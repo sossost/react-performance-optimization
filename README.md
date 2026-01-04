@@ -56,7 +56,11 @@
 
 사용하지 않는 코드를 번들에서 제거하여 번들 크기를 최소화합니다.
 
-- **💻 실습 예제:** `packages/example-02-tree-shaking/`
+- **📄 이론 문서:** [예제 README](./packages/example-02-tree-shaking/README.md)의 "이론: Tree Shaking 원리와 최적화 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-02-tree-shaking/`](./packages/example-02-tree-shaking/README.md)
+  - **Before:** lodash, moment 전체 import (초기 번들: 330.63 KB, gzip: 108.84 KB)
+  - **After:** lodash-es, date-fns에서 필요한 함수만 import (초기 번들: 217.42 KB, gzip: 68.28 KB)
+  - **효과:** 번들 크기 약 34% 감소 (gzip 기준 약 37% 감소)
 - **핵심 개념:** ES Module 사용, Side-effect 없는 모듈 작성, package.json sideEffects 설정, Named Export vs Default Export
 
 #### 1-3. 리소스 최적화
@@ -187,9 +191,12 @@ yarn install
 yarn dev:e1:before  # Before 프로젝트
 yarn dev:e1:after   # After 프로젝트
 
+# 예제 2: Tree Shaking
+yarn dev:e2:before  # Before 프로젝트
+yarn dev:e2:after   # After 프로젝트
+
 # 다른 예제들도 동일하게:
-# yarn dev:e2  # Memoization
-# yarn dev:e3  # Virtualization
+# yarn dev:e3  # Resource Optimization
 # ...
 ```
 
@@ -232,7 +239,7 @@ optimization/
     ├── example-01-code-splitting/     # Code Splitting만 다루는 예제
     │   ├── before/                    # 최적화 전
     │   └── after/                     # 최적화 후
-    ├── example-02-memoization/       # Memoization만 다루는 예제
+    ├── example-02-tree-shaking/      # Tree Shaking만 다루는 예제
     ├── example-03-virtualization/    # Virtualization만 다루는 예제
     └── ... (각 최적화 기법별 예제)
 ```

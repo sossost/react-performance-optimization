@@ -8,7 +8,13 @@
   ],
   "scripts": {
     "dev:server": "yarn workspace securities-server dev",
-    "lint": "yarn workspaces run lint"
+    "lint": "yarn workspaces run lint",
+    "dev:e2:before": "yarn workspace example-02-tree-shaking-before dev",
+    "dev:e2:after": "yarn workspace example-02-tree-shaking-after dev",
+    "build:e2:before": "yarn workspace example-02-tree-shaking-before build",
+    "build:e2:after": "yarn workspace example-02-tree-shaking-after build",
+    "preview:e2:before": "yarn workspace example-02-tree-shaking-before preview",
+    "preview:e2:after": "yarn workspace example-02-tree-shaking-after preview"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

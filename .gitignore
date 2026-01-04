@@ -51,3 +51,14 @@ next-env.d.ts
 # bundle analyzer output
 **/stats.html
 **/stats.json
+
+# 하위 프로젝트의 node_modules (모노레포에서 루트 node_modules 공유)
+**/node_modules/
+
+# Vite 캐시
+**/.vite
+
+# 기타 빌드 캐시
+**/.turbo
+**/.next
+**/.cache

@@ -98,7 +98,11 @@ Service Worker를 통한 캐싱 전략으로 성능 개선 및 오프라인 지�
 
 #### 2-1. API 호출 최적화
 
-- **💻 실습 예제:** `packages/example-06-api-optimization/`
+- **📄 이론 문서:** [예제 README](./packages/example-06-api-optimization/README.md)의 "이론: API 호출 최적화 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-06-api-optimization/`](./packages/example-06-api-optimization/README.md)
+  - **Before:** 순차적 요청 (Waterfall), 중복 요청, Debouncing 없음
+  - **After:** 병렬 요청 (Promise.all), Request Deduplication, Debouncing 적용, Request Cancellation
+  - **효과:** 요청 시간 단축 (약 50-70%), 네트워크 트래픽 감소, 서버 부하 감소
 - **핵심 개념:** Waterfall 방지 (병렬 요청), Request Deduplication, Request Cancellation, Debouncing/Throttling, Batch Requests
 
 #### 2-2. 데이터 캐싱 전략
@@ -215,6 +219,9 @@ yarn dev:e4:after   # After 프로젝트
 yarn dev:e5:before  # Before 프로젝트
 yarn dev:e5:after   # After 프로젝트
 
+# 예제 6: API 호출 최적화
+yarn dev:e6  # Before/After 토글로 전환
+
 # 다른 예제들도 동일하게:
 # ...
 ```
@@ -269,27 +276,27 @@ optimization/
 
 ## 📊 예제 프로젝트 목록
 
-| 예제                                   | 최적화 기법                  | Before                    | After                       |
-| -------------------------------------- | ---------------------------- | ------------------------- | --------------------------- |
-| `example-01-code-splitting/before`     | Code Splitting (Before)      | Static import             | -                           |
-| `example-01-code-splitting/after`      | Code Splitting (After)       | -                         | Dynamic import              |
-| `example-02-tree-shaking`              | Tree Shaking                 | 사용하지 않는 코드 포함   | Tree Shaking으로 제거       |
-| `example-03-resource-optimization`     | 리소스 최적화                | 최적화 없음               | 폰트, 압축, CDN 활용        |
-| `example-04-preload-prefetch/before`   | Preload/Prefetch (Before)    | 필요할 때만 로드          | -                           |
-| `example-04-preload-prefetch/after`    | Preload/Prefetch (After)     | -                         | Preload/Prefetch/Preconnect |
-| `example-05-service-worker-pwa/before` | Service Worker 캐싱 (Before) | Service Worker 없음       | -                           |
-| `example-05-service-worker-pwa/after`  | Service Worker 캐싱 (After)  | -                         | 캐싱 전략 및 오프라인 지원  |
-| `example-06-api-optimization`          | API 최적화                   | 순차 호출 (Waterfall)     | 병렬 호출 (Promise.all)     |
-| `example-07-data-caching`              | 데이터 캐싱                  | 매번 API 호출             | 캐싱 전략 적용              |
-| `example-08-suspense`                  | Suspense                     | 수동 로딩 상태 관리       | 선언적 로딩                 |
-| `example-09-state-colocation`          | State Colocation             | 전역 상태 관리            | 필요한 곳에 배치            |
-| `example-10-memoization`               | Memoization                  | 리렌더링 매번 발생        | React.memo, useMemo 적용    |
-| `example-11-component-rendering`       | 컴포넌트 렌더링 최적화       | 큰 컴포넌트, 불안정한 key | 컴포넌트 분리, 안정적인 key |
-| `example-12-virtualization`            | Virtualization               | 모든 항목 렌더링          | react-window로 가상화       |
-| `example-13-concurrent-features`       | React 18 Concurrent          | 동기적 업데이트           | 우선순위 조정               |
-| `example-14-layout-optimization`       | 레이아웃 최적화              | Layout Thrashing 발생     | CSS 최적화, CLS 최소화      |
-| `example-15-painting-optimization`     | 페인팅 최적화                | position/width 변경       | transform/opacity 사용      |
-| `example-16-web-workers`               | Web Workers                  | 메인 스레드에서 계산      | Web Worker로 오프로딩       |
+| 예제                                   | 최적화 기법                  | Before                                | After                                       |
+| -------------------------------------- | ---------------------------- | ------------------------------------- | ------------------------------------------- |
+| `example-01-code-splitting/before`     | Code Splitting (Before)      | Static import                         | -                                           |
+| `example-01-code-splitting/after`      | Code Splitting (After)       | -                                     | Dynamic import                              |
+| `example-02-tree-shaking`              | Tree Shaking                 | 사용하지 않는 코드 포함               | Tree Shaking으로 제거                       |
+| `example-03-resource-optimization`     | 리소스 최적화                | 최적화 없음                           | 폰트, 압축, CDN 활용                        |
+| `example-04-preload-prefetch/before`   | Preload/Prefetch (Before)    | 필요할 때만 로드                      | -                                           |
+| `example-04-preload-prefetch/after`    | Preload/Prefetch (After)     | -                                     | Preload/Prefetch/Preconnect                 |
+| `example-05-service-worker-pwa/before` | Service Worker 캐싱 (Before) | Service Worker 없음                   | -                                           |
+| `example-05-service-worker-pwa/after`  | Service Worker 캐싱 (After)  | -                                     | 캐싱 전략 및 오프라인 지원                  |
+| `example-06-api-optimization`          | API 호출 최적화              | 순차 호출, 중복 요청, Debouncing 없음 | 병렬 호출, 중복 제거, Debouncing, 요청 취소 |
+| `example-07-data-caching`              | 데이터 캐싱                  | 매번 API 호출                         | 캐싱 전략 적용                              |
+| `example-08-suspense`                  | Suspense                     | 수동 로딩 상태 관리                   | 선언적 로딩                                 |
+| `example-09-state-colocation`          | State Colocation             | 전역 상태 관리                        | 필요한 곳에 배치                            |
+| `example-10-memoization`               | Memoization                  | 리렌더링 매번 발생                    | React.memo, useMemo 적용                    |
+| `example-11-component-rendering`       | 컴포넌트 렌더링 최적화       | 큰 컴포넌트, 불안정한 key             | 컴포넌트 분리, 안정적인 key                 |
+| `example-12-virtualization`            | Virtualization               | 모든 항목 렌더링                      | react-window로 가상화                       |
+| `example-13-concurrent-features`       | React 18 Concurrent          | 동기적 업데이트                       | 우선순위 조정                               |
+| `example-14-layout-optimization`       | 레이아웃 최적화              | Layout Thrashing 발생                 | CSS 최적화, CLS 최소화                      |
+| `example-15-painting-optimization`     | 페인팅 최적화                | position/width 변경                   | transform/opacity 사용                      |
+| `example-16-web-workers`               | Web Workers                  | 메인 스레드에서 계산                  | Web Worker로 오프로딩                       |
 
 ### 학습 방법
 

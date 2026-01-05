@@ -239,6 +239,85 @@ Service Worker는 HTTPS 환경에서만 작동합니다 (localhost 예외).
 
 브라우저마다 캐시 크기 제한이 있으므로 주의해야 합니다.
 
+#### 6.4. 개발 환경에서의 캐시 문제
+
+**문제:** Service Worker가 등록되면 같은 포트의 다른 프로젝트를 열었을 때 이전 프로젝트의 캐시가 남아있을 수 있습니다.
+
+**원인:**
+
+- Service Worker 캐시는 브라우저가 자동으로 삭제하지 않음
+- 같은 포트(`localhost:5178`)를 사용하면 Service Worker가 계속 활성화됨
+- 캐시는 수동으로 삭제하거나 Service Worker가 업데이트될 때만 삭제됨
+
+**해결 방법:**
+
+1. **개발자 도구에서 수동 삭제 (권장)**
+
+   - 개발자 도구 > Application 탭
+   - Service Workers 섹션에서 "Unregister" 클릭
+   - Cache Storage 섹션에서 캐시 삭제
+
+2. **브라우저 캐시 초기화**
+
+   - 개발자 도구 > Application 탭 > Clear storage
+   - 또는 브라우저 설정에서 캐시 삭제
+
+3. **다른 포트 사용**
+
+   - 각 예제 프로젝트를 다른 포트로 실행
+   - 예: 예제 5는 5178, 예제 6은 5179
+
+4. **시크릿 모드 사용**
+   - 시크릿 모드에서는 Service Worker가 탭을 닫으면 자동으로 삭제됨
+
+**참고:** 프로덕션 환경에서는 Service Worker 버전을 변경하면 자동으로 이전 캐시가 삭제됩니다.
+
+#### 6.5. 프로덕션 배포 시 캐시 업데이트
+
+**방법:** Service Worker 파일이 변경되면 브라우저가 자동으로 새 버전을 감지하고 업데이트합니다.
+
+```javascript
+// 배포 시마다 CACHE_NAME 버전 업데이트
+const CACHE_NAME = "cache-v2"; // v1 → v2로 변경
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          // 이전 버전 캐시 삭제 (cache-v1 등)
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+```
+
+**작동 원리:**
+
+1. **새 배포 시:** Service Worker 파일이 변경되면 브라우저가 새 버전을 감지
+2. **설치:** 새 Service Worker가 백그라운드에서 설치됨
+3. **활성화:** `activate` 이벤트에서 이전 캐시(`cache-v1`) 삭제
+4. **새 캐시 생성:** 새 리소스가 `cache-v2`에 캐싱됨
+
+**주의사항:**
+
+- Service Worker 파일이 변경되지 않으면 업데이트되지 않음
+- 파일 내용이 조금이라도 변경되어야 새 버전으로 인식됨
+- 빌드 시 해시를 추가하거나 버전 번호를 변경하는 것이 좋음
+
+**실무 권장사항:**
+
+```javascript
+// 빌드 시 자동으로 버전 생성
+const CACHE_NAME = `cache-${process.env.BUILD_VERSION || Date.now()}`;
+// 또는
+const CACHE_NAME = `cache-${BUILD_HASH}`;
+```
+
 ---
 
 ## 실행 방법

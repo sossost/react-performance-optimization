@@ -32,7 +32,10 @@
     "build:e5:before": "yarn workspace example-05-service-worker-pwa-before build",
     "build:e5:after": "yarn workspace example-05-service-worker-pwa-after build",
     "preview:e5:before": "yarn workspace example-05-service-worker-pwa-before preview",
-    "preview:e5:after": "yarn workspace example-05-service-worker-pwa-after preview"
+    "preview:e5:after": "yarn workspace example-05-service-worker-pwa-after preview",
+    "dev:e6": "yarn workspace example-06-api-optimization dev",
+    "build:e6": "yarn workspace example-06-api-optimization build",
+    "preview:e6": "yarn workspace example-06-api-optimization preview"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {

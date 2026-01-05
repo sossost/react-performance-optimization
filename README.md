@@ -109,8 +109,12 @@ Service Worker를 통한 캐싱 전략으로 성능 개선 및 오프라인 지�
 
 API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니다.
 
-- **💻 실습 예제:** `packages/example-07-data-caching/`
-- **핵심 개념:** 메모리 캐싱, 브라우저 캐싱 (Cache API, IndexedDB), 캐시 무효화 전략, Stale-While-Revalidate 패턴
+- **📄 이론 문서:** [예제 README](./packages/example-07-data-caching/README.md)의 "이론: 데이터 캐싱 전략 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-07-data-caching/`](./packages/example-07-data-caching/README.md)
+  - **Before:** 캐싱 없음 (매번 API 호출)
+  - **After:** 메모리 캐싱, TTL 적용, 캐시 무효화 기능
+  - **효과:** 네트워크 요청 감소, 응답 시간 단축, 서버 부하 감소
+- **핵심 개념:** 메모리 캐싱, TTL (Time To Live), 캐시 무효화 전략, LRU 캐시, 캐시 전략 비교 (Cache First, Network First, Stale While Revalidate)
 
 #### 2-3. 비동기 로딩과 Suspense
 
@@ -222,6 +226,9 @@ yarn dev:e5:after   # After 프로젝트
 # 예제 6: API 호출 최적화
 yarn dev:e6  # Before/After 토글로 전환
 
+# 예제 7: 데이터 캐싱 전략
+yarn dev:e7  # Before/After 토글로 전환
+
 # 다른 예제들도 동일하게:
 # ...
 ```
@@ -287,7 +294,7 @@ optimization/
 | `example-05-service-worker-pwa/before` | Service Worker 캐싱 (Before) | Service Worker 없음                   | -                                           |
 | `example-05-service-worker-pwa/after`  | Service Worker 캐싱 (After)  | -                                     | 캐싱 전략 및 오프라인 지원                  |
 | `example-06-api-optimization`          | API 호출 최적화              | 순차 호출, 중복 요청, Debouncing 없음 | 병렬 호출, 중복 제거, Debouncing, 요청 취소 |
-| `example-07-data-caching`              | 데이터 캐싱                  | 매번 API 호출                         | 캐싱 전략 적용                              |
+| `example-07-data-caching`              | 데이터 캐싱 전략             | 캐싱 없음 (매번 API 호출)             | 메모리 캐싱, TTL, 캐시 무효화               |
 | `example-08-suspense`                  | Suspense                     | 수동 로딩 상태 관리                   | 선언적 로딩                                 |
 | `example-09-state-colocation`          | State Colocation             | 전역 상태 관리                        | 필요한 곳에 배치                            |
 | `example-10-memoization`               | Memoization                  | 리렌더링 매번 발생                    | React.memo, useMemo 적용                    |

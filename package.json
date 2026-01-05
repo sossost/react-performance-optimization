@@ -26,7 +26,13 @@
     "build:e4:before": "yarn workspace example-04-preload-prefetch-before build",
     "build:e4:after": "yarn workspace example-04-preload-prefetch-after build",
     "preview:e4:before": "yarn workspace example-04-preload-prefetch-before preview",
-    "preview:e4:after": "yarn workspace example-04-preload-prefetch-after preview"
+    "preview:e4:after": "yarn workspace example-04-preload-prefetch-after preview",
+    "dev:e5:before": "yarn workspace example-05-service-worker-pwa-before dev",
+    "dev:e5:after": "yarn workspace example-05-service-worker-pwa-after dev",
+    "build:e5:before": "yarn workspace example-05-service-worker-pwa-before build",
+    "build:e5:after": "yarn workspace example-05-service-worker-pwa-after build",
+    "preview:e5:before": "yarn workspace example-05-service-worker-pwa-before preview",
+    "preview:e5:after": "yarn workspace example-05-service-worker-pwa-after preview"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {

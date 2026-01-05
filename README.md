@@ -81,12 +81,16 @@
   - **효과:** 폰트 로딩 시간 단축 (FOIT 방지), 외부 리소스 연결 지연 제거
 - **핵심 개념:** `<link rel="preload">`, `<link rel="prefetch">`, `<link rel="preconnect">`, `<link rel="dns-prefetch">`, 리소스 우선순위 관리
 
-#### 1-5. Service Worker / PWA
+#### 1-5. Service Worker 캐싱
 
-오프라인 지원 및 캐싱 전략을 통한 성능 개선.
+Service Worker를 통한 캐싱 전략으로 성능 개선 및 오프라인 지원을 구현합니다.
 
-- **💻 실습 예제:** `packages/example-05-service-worker-pwa/`
-- **핵심 개념:** Service Worker 등록, 캐싱 전략 (Cache First, Network First, Stale While Revalidate), 오프라인 지원
+- **📄 이론 문서:** [예제 README](./packages/example-05-service-worker-pwa/README.md)의 "이론: Service Worker 캐싱 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-05-service-worker-pwa/`](./packages/example-05-service-worker-pwa/README.md)
+  - **Before:** Service Worker 없음 (네트워크 요청만 사용, 캐싱 없음)
+  - **After:** Service Worker 적용 (Cache First 전략, 정적 리소스 캐싱, 오프라인 지원)
+  - **효과:** 재방문 시 빠른 로딩, 오프라인에서도 기본 기능 작동
+- **핵심 개념:** Service Worker 등록, 캐싱 전략 (Cache First, Network First, Stale While Revalidate), 캐시 무효화, 오프라인 지원
 
 ### 2️⃣ 데이터 패칭 최적화
 
@@ -207,6 +211,10 @@ yarn dev:e3:after   # After 프로젝트
 yarn dev:e4:before  # Before 프로젝트
 yarn dev:e4:after   # After 프로젝트
 
+# 예제 5: Service Worker 캐싱
+yarn dev:e5:before  # Before 프로젝트
+yarn dev:e5:after   # After 프로젝트
+
 # 다른 예제들도 동일하게:
 # ...
 ```
@@ -261,26 +269,27 @@ optimization/
 
 ## 📊 예제 프로젝트 목록
 
-| 예제                                 | 최적화 기법               | Before                    | After                       |
-| ------------------------------------ | ------------------------- | ------------------------- | --------------------------- |
-| `example-01-code-splitting/before`   | Code Splitting (Before)   | Static import             | -                           |
-| `example-01-code-splitting/after`    | Code Splitting (After)    | -                         | Dynamic import              |
-| `example-02-tree-shaking`            | Tree Shaking              | 사용하지 않는 코드 포함   | Tree Shaking으로 제거       |
-| `example-03-resource-optimization`   | 리소스 최적화             | 최적화 없음               | 폰트, 압축, CDN 활용        |
-| `example-04-preload-prefetch/before` | Preload/Prefetch (Before) | 필요할 때만 로드          | -                           |
-| `example-04-preload-prefetch/after`  | Preload/Prefetch (After)  | -                         | Preload/Prefetch/Preconnect |
-| `example-05-service-worker-pwa`      | Service Worker/PWA        | Service Worker 없음       | 캐싱 및 오프라인 지원       |
-| `example-06-api-optimization`        | API 최적화                | 순차 호출 (Waterfall)     | 병렬 호출 (Promise.all)     |
-| `example-07-data-caching`            | 데이터 캐싱               | 매번 API 호출             | 캐싱 전략 적용              |
-| `example-08-suspense`                | Suspense                  | 수동 로딩 상태 관리       | 선언적 로딩                 |
-| `example-09-state-colocation`        | State Colocation          | 전역 상태 관리            | 필요한 곳에 배치            |
-| `example-10-memoization`             | Memoization               | 리렌더링 매번 발생        | React.memo, useMemo 적용    |
-| `example-11-component-rendering`     | 컴포넌트 렌더링 최적화    | 큰 컴포넌트, 불안정한 key | 컴포넌트 분리, 안정적인 key |
-| `example-12-virtualization`          | Virtualization            | 모든 항목 렌더링          | react-window로 가상화       |
-| `example-13-concurrent-features`     | React 18 Concurrent       | 동기적 업데이트           | 우선순위 조정               |
-| `example-14-layout-optimization`     | 레이아웃 최적화           | Layout Thrashing 발생     | CSS 최적화, CLS 최소화      |
-| `example-15-painting-optimization`   | 페인팅 최적화             | position/width 변경       | transform/opacity 사용      |
-| `example-16-web-workers`             | Web Workers               | 메인 스레드에서 계산      | Web Worker로 오프로딩       |
+| 예제                                   | 최적화 기법                  | Before                    | After                       |
+| -------------------------------------- | ---------------------------- | ------------------------- | --------------------------- |
+| `example-01-code-splitting/before`     | Code Splitting (Before)      | Static import             | -                           |
+| `example-01-code-splitting/after`      | Code Splitting (After)       | -                         | Dynamic import              |
+| `example-02-tree-shaking`              | Tree Shaking                 | 사용하지 않는 코드 포함   | Tree Shaking으로 제거       |
+| `example-03-resource-optimization`     | 리소스 최적화                | 최적화 없음               | 폰트, 압축, CDN 활용        |
+| `example-04-preload-prefetch/before`   | Preload/Prefetch (Before)    | 필요할 때만 로드          | -                           |
+| `example-04-preload-prefetch/after`    | Preload/Prefetch (After)     | -                         | Preload/Prefetch/Preconnect |
+| `example-05-service-worker-pwa/before` | Service Worker 캐싱 (Before) | Service Worker 없음       | -                           |
+| `example-05-service-worker-pwa/after`  | Service Worker 캐싱 (After)  | -                         | 캐싱 전략 및 오프라인 지원  |
+| `example-06-api-optimization`          | API 최적화                   | 순차 호출 (Waterfall)     | 병렬 호출 (Promise.all)     |
+| `example-07-data-caching`              | 데이터 캐싱                  | 매번 API 호출             | 캐싱 전략 적용              |
+| `example-08-suspense`                  | Suspense                     | 수동 로딩 상태 관리       | 선언적 로딩                 |
+| `example-09-state-colocation`          | State Colocation             | 전역 상태 관리            | 필요한 곳에 배치            |
+| `example-10-memoization`               | Memoization                  | 리렌더링 매번 발생        | React.memo, useMemo 적용    |
+| `example-11-component-rendering`       | 컴포넌트 렌더링 최적화       | 큰 컴포넌트, 불안정한 key | 컴포넌트 분리, 안정적인 key |
+| `example-12-virtualization`            | Virtualization               | 모든 항목 렌더링          | react-window로 가상화       |
+| `example-13-concurrent-features`       | React 18 Concurrent          | 동기적 업데이트           | 우선순위 조정               |
+| `example-14-layout-optimization`       | 레이아웃 최적화              | Layout Thrashing 발생     | CSS 최적화, CLS 최소화      |
+| `example-15-painting-optimization`     | 페인팅 최적화                | position/width 변경       | transform/opacity 사용      |
+| `example-16-web-workers`               | Web Workers                  | 메인 스레드에서 계산      | Web Worker로 오프로딩       |
 
 ### 학습 방법
 

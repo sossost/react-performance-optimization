@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preload/Prefetch - After (최적화 후)</title>
+
+    <!-- ✅ Preconnect: Google Fonts 연결 미리 설정 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ✅ Preload: 중요한 폰트를 미리 로드 -->
+    <link
+      rel="preload"
+      href="/fonts/custom.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- ✅ Preload: LCP 이미지를 미리 로드 -->
+    <link rel="preload" href="/images/hero.jpg" as="image" />
+
+    <!-- Google Fonts 스타일시트 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -133,8 +133,12 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 
 #### 3-1. 상태 구조 최적화 (State Colocation)
 
-- **💻 실습 예제:** `packages/example-09-state-colocation/`
-- **핵심 개념:** 상태 위치 조정 (전역 vs 로컬), Context 분리 (State/Dispatch), 상태 정규화, 상태 구조 설계 (Flat vs Nested)
+- **📄 이론 문서:** [예제 README](./packages/example-09-state-colocation/README.md)의 "이론: State Colocation 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-09-state-colocation/`](./packages/example-09-state-colocation/README.md)
+  - **Before:** 모든 상태를 상위 컴포넌트(App)에서 관리, 상태 변경 시 넓은 리렌더링 영향 범위, Props Drilling 발생
+  - **After:** State Colocation 적용, 상태를 필요한 위치에 배치, 상태 변경 시 영향 범위 최소화
+  - **효과:** 불필요한 리렌더링 방지, 컴포넌트 독립성 향상, Props Drilling 해결, 코드 복잡도 감소
+- **핵심 개념:** 상태 위치 조정 (전역 vs 로컬), 가장 가까운 공통 조상에 배치, Context 분리 (상태 단위 분리), Props Drilling 해결, 상태 변경 영향 범위 최소화
 
 #### 3-2. 불필요한 리렌더링 방지 (Memoization)
 
@@ -235,6 +239,9 @@ yarn dev:e7  # Before/After 토글로 전환
 
 # 예제 8: Suspense
 yarn dev:e8  # Before/After 토글로 전환
+
+# 예제 9: State Colocation
+yarn dev:e9  # Before/After 토글로 전환
 
 # 다른 예제들도 동일하게:
 # ...

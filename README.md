@@ -142,8 +142,12 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 
 #### 3-2. 불필요한 리렌더링 방지 (Memoization)
 
-- **💻 실습 예제:** `packages/example-10-memoization/`
-- **핵심 개념:** React.memo, useMemo / useCallback, 참조 동일성 유지, Context 최적화 (Provider 분리), Redux/Zustand 최적화
+- **📄 이론 문서:** [예제 README](./packages/example-10-memoization/README.md)의 "이론: Memoization 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-10-memoization/`](./packages/example-10-memoization/README.md)
+  - **Before:** Memoization 없음, 모든 상태 변경 시 모든 컴포넌트 리렌더링, 매번 계산 실행
+  - **After:** React.memo, useMemo, useCallback 적용, 관련 없는 상태 변경 시 해당 컴포넌트는 리렌더링 안 됨, 계산 결과 캐싱
+  - **효과:** 불필요한 리렌더링 방지, 계산 비용 절감, 함수/객체 참조 안정성 유지
+- **핵심 개념:** React.memo (컴포넌트 메모이제이션), useMemo (계산 결과 캐싱), useCallback (함수 참조 동일성 유지), 객체/배열 메모이제이션, Context 최적화 (Provider 분리), 참조 동일성 유지
 
 ### 4️⃣ 렌더링 최적화
 
@@ -242,6 +246,9 @@ yarn dev:e8  # Before/After 토글로 전환
 
 # 예제 9: State Colocation
 yarn dev:e9  # Before/After 토글로 전환
+
+# 예제 10: Memoization
+yarn dev:e10  # Before/After 토글로 전환
 
 # 다른 예제들도 동일하게:
 # ...

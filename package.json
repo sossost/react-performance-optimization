@@ -44,7 +44,10 @@
     "preview:e8": "yarn workspace example-08-suspense preview",
     "dev:e9": "yarn workspace example-09-state-colocation dev",
     "build:e9": "yarn workspace example-09-state-colocation build",
-    "preview:e9": "yarn workspace example-09-state-colocation preview"
+    "preview:e9": "yarn workspace example-09-state-colocation preview",
+    "dev:e10": "yarn workspace example-10-memoization dev",
+    "build:e10": "yarn workspace example-10-memoization build",
+    "preview:e10": "yarn workspace example-10-memoization preview"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {

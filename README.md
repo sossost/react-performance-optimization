@@ -155,17 +155,20 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 
 #### 4-1. 컴포넌트 렌더링 최적화
 
-- **💻 실습 예제:** `packages/example-11-component-rendering/`
-- **핵심 개념:** 컴포넌트 분리 전략, 조건부 렌더링 최적화, 리스트 렌더링 최적화, Key 최적화 (안정적인 key 사용), Error Boundaries
+- **📄 이론 문서:** [예제 README](./packages/example-11-component-rendering/README.md)의 "이론: 컴포넌트 렌더링 최적화 원리와 전략" 섹션 참고
+- **💻 실습 예제:** [`packages/example-11-component-rendering/`](./packages/example-11-component-rendering/README.md)
+- **핵심 개념:** 안정적인 key, Early return 기반 조건부 렌더링, Error Boundary 범위 설계
 
 #### 4-2. 대용량 데이터 가상화 (Virtualization)
 
-- **💻 실습 예제:** `packages/example-12-virtualization/`
+- **📄 이론 문서:** [예제 README](./packages/example-12-virtualization/README.md) 참고
+- **💻 실습 예제:** `packages/example-12-virtualization/` (현재 문서만 제공)
 - **핵심 개념:** react-window / react-virtual, 무한 스크롤 최적화, 가상 스크롤링, Windowing 기법
 
 #### 4-3. React 18 Concurrent Features
 
-- **💻 실습 예제:** `packages/example-13-concurrent-features/`
+- **📄 이론 문서:** [예제 README](./packages/example-13-concurrent-features/README.md) 참고
+- **💻 실습 예제:** `packages/example-13-concurrent-features/` (현재 문서만 제공)
 - **핵심 개념:** useTransition (우선순위 조정), useDeferredValue (지연된 값), startTransition API, Automatic Batching, Concurrent Rendering
 
 ### 5️⃣ 브라우저 렌더링 최적화
@@ -174,17 +177,20 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 
 #### 5-1. 레이아웃 최적화
 
-- **💻 실습 예제:** `packages/example-14-layout-optimization/`
+- **📄 이론 문서:** [예제 README](./packages/example-14-layout-optimization/README.md) 참고
+- **💻 실습 예제:** `packages/example-14-layout-optimization/` (현재 문서만 제공)
 - **핵심 개념:** Layout Thrashing 방지, CSS 최적화 (will-change, contain, content-visibility), CLS (Cumulative Layout Shift) 최소화, Flexbox/Grid 최적화
 
 #### 5-2. 페인팅 최적화
 
-- **💻 실습 예제:** `packages/example-15-painting-optimization/`
+- **📄 이론 문서:** [예제 README](./packages/example-15-painting-optimization/README.md) 참고
+- **💻 실습 예제:** `packages/example-15-painting-optimization/` (현재 문서만 제공)
 - **핵심 개념:** GPU 가속 활용, Repaint 최소화, 애니메이션 최적화 (transform, opacity 활용), Composite Layer 최적화
 
 #### 5-3. Web Workers 활용
 
-- **💻 실습 예제:** `packages/example-16-web-workers/`
+- **📄 이론 문서:** [예제 README](./packages/example-16-web-workers/README.md) 참고
+- **💻 실습 예제:** `packages/example-16-web-workers/` (현재 문서만 제공)
 - **핵심 개념:** 메인 스레드 부하 분산, 무거운 계산 작업 오프로딩, Worker Pool 패턴
 
 ### 6️⃣ SSR/SSG 최적화
@@ -250,9 +256,14 @@ yarn dev:e9  # Before/After 토글로 전환
 # 예제 10: Memoization
 yarn dev:e10  # Before/After 토글로 전환
 
+# 예제 11: 컴포넌트 렌더링 최적화
+yarn dev:e11  # Before/After 토글로 전환
+
 # 다른 예제들도 동일하게:
 # ...
 ```
+
+> 예제 12~16은 현재 문서만 제공하며, 실행 스크립트는 추후 추가됩니다.
 
 **또는 각 예제 디렉토리에서 직접 실행:**
 
@@ -294,7 +305,7 @@ optimization/
     │   ├── before/                    # 최적화 전
     │   └── after/                     # 최적화 후
     ├── example-02-tree-shaking/      # Tree Shaking만 다루는 예제
-    ├── example-03-virtualization/    # Virtualization만 다루는 예제
+    ├── example-03-resource-optimization/    # 리소스 최적화만 다루는 예제
     └── ... (각 최적화 기법별 예제)
 ```
 
@@ -319,12 +330,14 @@ optimization/
 | `example-08-suspense`                  | Suspense                     | 수동 로딩 상태 관리                   | 선언적 로딩                                 |
 | `example-09-state-colocation`          | State Colocation             | 전역 상태 관리                        | 필요한 곳에 배치                            |
 | `example-10-memoization`               | Memoization                  | 리렌더링 매번 발생                    | React.memo, useMemo 적용                    |
-| `example-11-component-rendering`       | 컴포넌트 렌더링 최적화       | 큰 컴포넌트, 불안정한 key             | 컴포넌트 분리, 안정적인 key                 |
+| `example-11-component-rendering`       | 컴포넌트 렌더링 최적화       | 불안정한 key, 조건부 계산 낭비        | 안정적인 key, 조기 반환, 오류 범위 축소     |
 | `example-12-virtualization`            | Virtualization               | 모든 항목 렌더링                      | react-window로 가상화                       |
 | `example-13-concurrent-features`       | React 18 Concurrent          | 동기적 업데이트                       | 우선순위 조정                               |
 | `example-14-layout-optimization`       | 레이아웃 최적화              | Layout Thrashing 발생                 | CSS 최적화, CLS 최소화                      |
 | `example-15-painting-optimization`     | 페인팅 최적화                | position/width 변경                   | transform/opacity 사용                      |
 | `example-16-web-workers`               | Web Workers                  | 메인 스레드에서 계산                  | Web Worker로 오프로딩                       |
+
+> 예제 12~16은 현재 문서만 제공되며, 코드/스크립트는 추후 추가됩니다.
 
 ### 학습 방법
 

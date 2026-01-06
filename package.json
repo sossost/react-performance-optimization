@@ -53,7 +53,10 @@
     "preview:e11": "yarn workspace example-11-component-rendering preview",
     "dev:e12": "yarn workspace example-12-virtualization dev",
     "build:e12": "yarn workspace example-12-virtualization build",
-    "preview:e12": "yarn workspace example-12-virtualization preview"
+    "preview:e12": "yarn workspace example-12-virtualization preview",
+    "dev:e13": "yarn workspace example-13-concurrent-features dev",
+    "build:e13": "yarn workspace example-13-concurrent-features build",
+    "preview:e13": "yarn workspace example-13-concurrent-features preview"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {

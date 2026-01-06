@@ -168,7 +168,7 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 #### 4-3. React 18 Concurrent Features
 
 - **📄 이론 문서:** [예제 README](./packages/example-13-concurrent-features/README.md) 참고
-- **💻 실습 예제:** `packages/example-13-concurrent-features/` (현재 문서만 제공)
+- **💻 실습 예제:** [`packages/example-13-concurrent-features/`](./packages/example-13-concurrent-features/README.md)
 - **핵심 개념:** useTransition (우선순위 조정), useDeferredValue (지연된 값), startTransition API, Automatic Batching, Concurrent Rendering
 
 ### 5️⃣ 브라우저 렌더링 최적화
@@ -262,11 +262,14 @@ yarn dev:e11  # Before/After 토글로 전환
 # 예제 12: Virtualization
 yarn dev:e12  # Before/After 나란히 비교
 
+# 예제 13: React 18 Concurrent Features
+yarn dev:e13  # Before/After 나란히 비교
+
 # 다른 예제들도 동일하게:
 # ...
 ```
 
-> 예제 13~16은 현재 문서만 제공하며, 실행 스크립트는 추후 추가됩니다.
+> 예제 14~16은 현재 문서만 제공하며, 실행 스크립트는 추후 추가됩니다.
 
 **또는 각 예제 디렉토리에서 직접 실행:**
 

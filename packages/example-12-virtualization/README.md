@@ -3,13 +3,13 @@
 ## 목적
 
 React **Virtualization 최적화 기법**을 독립적으로 학습하기 위한 예제입니다.
-현재는 문서만 제공하며, 실습 코드는 추후 추가될 예정입니다.
+Before/After를 나란히 비교할 수 있는 실습 코드를 포함합니다.
 
 ---
 
 ## 구조
 
-아래는 구현 예정 구조입니다.
+아래 구조로 구현되어 있습니다.
 
 - **Before 모드**
 
@@ -428,7 +428,13 @@ function loadMore() {
 
 ## 실행 방법
 
-현재 예제 코드는 준비 중입니다. 코드가 추가되면 실행 방법을 업데이트하겠습니다.
+```bash
+yarn install
+yarn dev:e12
+```
+
+- 접속: [http://localhost:5185](http://localhost:5185)
+- 상단에서 항목 수와 overscan을 조절한 뒤 Before/After를 비교하세요.
 
 ---
 

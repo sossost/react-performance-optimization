@@ -162,7 +162,7 @@ API 응답을 캐싱하여 중복 요청을 방지하고 성능을 개선합니�
 #### 4-2. 대용량 데이터 가상화 (Virtualization)
 
 - **📄 이론 문서:** [예제 README](./packages/example-12-virtualization/README.md) 참고
-- **💻 실습 예제:** `packages/example-12-virtualization/` (현재 문서만 제공)
+- **💻 실습 예제:** [`packages/example-12-virtualization/`](./packages/example-12-virtualization/README.md)
 - **핵심 개념:** react-window / react-virtual, 무한 스크롤 최적화, 가상 스크롤링, Windowing 기법
 
 #### 4-3. React 18 Concurrent Features
@@ -259,11 +259,14 @@ yarn dev:e10  # Before/After 토글로 전환
 # 예제 11: 컴포넌트 렌더링 최적화
 yarn dev:e11  # Before/After 토글로 전환
 
+# 예제 12: Virtualization
+yarn dev:e12  # Before/After 나란히 비교
+
 # 다른 예제들도 동일하게:
 # ...
 ```
 
-> 예제 12~16은 현재 문서만 제공하며, 실행 스크립트는 추후 추가됩니다.
+> 예제 13~16은 현재 문서만 제공하며, 실행 스크립트는 추후 추가됩니다.
 
 **또는 각 예제 디렉토리에서 직접 실행:**
 
